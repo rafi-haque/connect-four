@@ -20,8 +20,6 @@ void MinMax() {
     connectFourBoard *board_object = new connectFourBoard;
 
     cout << endl;
-    cout << "Initial Board --- " << moves_made << " moves made" << endl;
-    cout << "*************************************************" << endl;
 
     board_object->display_board(board_object);
     board_object->player = 'X';
@@ -37,8 +35,6 @@ void MinMax() {
             head->ob->player = 'X';
             moves_made++;
             game_path_length++;
-            cout << "After 1st move board state(Max's move/Root Node):" << endl;
-            head->ob->display_board(head->ob);
         }
 
         minmaxA minmax_object;
@@ -65,8 +61,6 @@ void AlphaBeta() {
     connectFourBoard *board_object = new connectFourBoard;
 
     cout << endl;
-    cout << "Initial Board " << moves_made << " moves made" << endl;
-    cout << "***********************************************" << endl;
 
     board_object->display_board(board_object);
     board_object->player = 'X';
@@ -82,8 +76,6 @@ void AlphaBeta() {
             head->ob->player = 'X';
             moves_made++;
             game_path_length++;
-            cout << "After 1st move board state(Max's move/Root Node):" << endl;
-            head->ob->display_board(head->ob);
         }
 
         alphabeta alphaBeta_object;
@@ -101,7 +93,7 @@ void AlphaBeta() {
 
 int main() {
     int algo_choiceX, algo_choiceO;
-    cout << "Select which Algorithm X has to play with ?" << endl;
+    cout << "X will use : " << endl;
     cout << endl;
     cout << "  1 - MinmaxAB" << endl;
     cout << "  2 - AlphaBeta" << endl;
@@ -109,7 +101,7 @@ int main() {
     cin >> algo_choiceX;
     cout << endl;
 
-    cout << "Select which Algorithm O has to play with ?" << endl;
+    cout << "O will use : " << endl;
     cout << endl;
     cout << "  1 - MinmaxAB" << endl;
     cout << "  2 - AlphaBeta" << endl;
@@ -117,7 +109,7 @@ int main() {
     cin >> algo_choiceO;
     cout << endl;
 
-    cout << "Choose the val function for player X " << endl;
+    cout << "Player X - evaluation function : " << endl;
     cout << "  1 - evaluation function 1" << endl;
     cout << "  2 - evaluation function 2" << endl;
     cout << "  3 - evaluation function 3" << endl;
@@ -125,7 +117,7 @@ int main() {
     cin >> evalfn_choiceX;
     cout << endl;
 
-    cout << "Choose the val function for player O " << endl;
+    cout << "Player X - evaluation function : " << endl;
     cout << "  1 - evaluation function 1" << endl;
     cout << "  2 - evaluation function 2" << endl;
     cout << "  3 - evaluation function 3" << endl;
@@ -174,7 +166,6 @@ int main() {
 
         if (head->ob->player == 'X' && algo_choiceX == 2) {
             alphaBeta_object.eval_choice = evalfn_choiceX;
-            // assigns the users choice of evaluation function chosen
             int x = alphaBeta_object.alpha_beta(head, 0, head->ob->player, 1000, -1000);
             moves_made++;
             game_path_length++;
@@ -182,7 +173,6 @@ int main() {
 
         if (head->ob->player == 'O' && algo_choiceX == 2) {
             alphaBeta_object.eval_choice = evalfn_choiceX;
-            // assigns the users choice of evaluation function chosen
             int x = alphaBeta_object.alpha_beta(head, 0, head->ob->player, 1000, -1000);
             moves_made++;
             game_path_length++;
