@@ -218,11 +218,66 @@ int tree::evaluation1() {
     return initial_value + value;
 }
 
+
 // evaluation function 2
 int tree::evaluation2() {
-    // TO-DO
-    return 0;
+    int value = 0;
+    // 2 check
+    if (ob->player == 'X') {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                // for continuous row
+                // first checking whether not everything is empty
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i][j + 1]) && (ob->board[i][j + 2] == ' ')) {
+                        value = 100;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
+                // for continuous col
+                // first checking whether not everything is empty
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i + 1][j]) && (ob->board[i + 2][j] == ' ')) {
+                        value = 100;
+                    }
+                }
+            }
+        }
+
+    }
+
+    else if (ob->player == 'O') {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                // for continuous row
+                // first checking whether not everything is empty
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i][j + 1]) && (ob->board[i][j + 2] == ' ')) {
+                        value = -100;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
+                // for continuous col
+                // first checking whether not everything is empty
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i + 1][j]) && (ob->board[i + 2][j] == ' ')) {
+                        value = -100;
+                    }
+                }
+            }
+        }
+    }
+
+    return value;
 }
+
 
 // evaluation function 3
 int tree::evaluation3() {
