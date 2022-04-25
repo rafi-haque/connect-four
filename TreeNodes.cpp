@@ -281,9 +281,112 @@ int tree::evaluation2() {
 
 // evaluation function 3
 int tree::evaluation3() {
-    // TO-DO
-    return 0;
+    int value = 0;
+    // 2 check
+    if (ob->player == 'X') {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                // for continuous row
+                // first checking whether not everything is empty
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i][j + 1]) && (ob->board[i][j + 2] == ' ')) {
+                        value = 100;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
+                // for continuous col
+                // first checking whether not everything is empty
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i + 1][j]) && (ob->board[i + 2][j] == ' ')) {
+                        value = 100;
+                    }
+                }
+            }
+        }
+
+        // 3 check
+        // for continuous row
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i][j + 1] == ob->board[i][j + 2] && ob->board[i][j] == 'X') && (ob->board[i][j + 3] == ' ') || (ob->board[i][j + 1] == ob->board[i][j + 2] == ob->board[i][j + 3] && ob->board[i][j] == 'X') && (ob->board[i][j + 4] != ' ')) {
+                        value = 100;
+                    }
+                }
+            }
+        }
+
+        // 3 check
+        // for continuous col
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i + 1][j] == ob->board[i + 2][j] && (ob->board[i][j] == 'X') && (ob->board[i + 3][j] == ' ') || ob->board[i + 1][j] == ob->board[i + 2][j] == ob->board[i + 3][j]) && (ob->board[i][j] == 'X') && (ob->board[i + 4][j] == ' ')) {
+                        value = 100;
+                    }
+                }
+            }
+        }
+    }
+
+    else if (ob->player == 'O') {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                // for continuous row
+                // first checking whether not everything is empty
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i][j + 1]) && (ob->board[i][j + 2] == ' ')) {
+                        value = -100;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
+                // for continuous col
+                // first checking whether not everything is empty
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i + 1][j]) && (ob->board[i + 2][j] == ' ')) {
+                        value = -100;
+                    }
+                }
+            }
+        }
+
+        // 3 check
+        // for continuous row
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i][j + 1] == ob->board[i][j + 2] && ob->board[i][j] == 'O') && (ob->board[i][j + 3] == ' ') || (ob->board[i][j + 1] == ob->board[i][j + 2] == ob->board[i][j + 3] && ob->board[i][j] == 'O') && (ob->board[i][j + 4] != ' ')) {
+                        value = -100;
+                    }
+                }
+            }
+        }
+
+        // 3 check
+        // for continuous col
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (ob->board[i][j] != ' ' || ob->board[i][j + 1] != ' ' || ob->board[i][j + 2] != ' ' || ob->board[i][j + 3] != ' ') {
+                    if ((ob->board[i][j] == ob->board[i + 1][j] == ob->board[i + 2][j]) && (ob->board[i][j] == 'O') && (ob->board[i + 3][j] == ' ') || ob->board[i + 1][j] == ob->board[i + 2][j] == ob->board[i + 3][j] && (ob->board[i][j] == 'O') && (ob->board[i + 4][j] == ' ')) {
+                        value = -100;
+                    }
+                }
+            }
+        }
+    }
+
+    return value;
 }
+
 
 /* this function copies one nodes board configuration
     to the other nodes board it the board's configuration
