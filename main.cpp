@@ -45,7 +45,7 @@ void MinMax() {
         game_path_length++;
 
         // to get the optimal node - Move Gen function
-        head->move_gen(board_object, moves_made);
+        head->generate_move(board_object, moves_made);
     }
     stop_time = clock();
 }
@@ -86,7 +86,7 @@ void AlphaBeta() {
         game_path_length++;
 
         // to get the optimal node - Move Gen function
-        head->move_gen(board_object, moves_made);
+        head->generate_move(board_object, moves_made);
     }
     stop_time = clock();
 }
@@ -177,7 +177,7 @@ int main() {
             moves_made++;
             game_path_length++;
         }
-        head->move_gen(board_object, moves_made);
+        head->generate_move(board_object, moves_made);
     }
     stop_time = clock();
 

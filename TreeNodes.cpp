@@ -218,7 +218,6 @@ int tree::evaluation1() {
     return initial_value + value;
 }
 
-
 // evaluation function 2
 int tree::evaluation2() {
     int value = 0;
@@ -277,7 +276,6 @@ int tree::evaluation2() {
 
     return value;
 }
-
 
 // evaluation function 3
 int tree::evaluation3() {
@@ -387,7 +385,6 @@ int tree::evaluation3() {
     return value;
 }
 
-
 /* this function copies one nodes board configuration
     to the other nodes board it the board's configuration
     that needs to be copied as a reference parameter
@@ -422,7 +419,7 @@ int tree::getOptimalNode() {
 }
 
 /* this function checks whether the terminal node has been reached
-   and calls display_contents function
+   and calls print_information function
 */
 void tree::helper() {
     char c1, c2, c3, c4;
@@ -437,7 +434,7 @@ void tree::helper() {
             if ((c1 == c2 && c2 == c3 && c4 == ' ' && c1 == this->ob->player && this->ob->board[r + 2][c - 3] != ' ')) {
                 // cout<<"RHS matched"<<endl;
                 this->ob->board[r + 3][c - 3] = this->ob->player;
-                display_contents();
+                print_information();
                 exit(0);
             }
         }
@@ -454,7 +451,7 @@ void tree::helper() {
             if ((c1 == c2 && c2 == c3 && c4 == ' ' && c1 == this->ob->player && this->ob->board[r + 2][c - 3] != ' ')) {
                 // cout<<"LHS matched"<<endl;
                 this->ob->board[r + 3][c + 3] = this->ob->player;
-                display_contents();
+                print_information();
                 exit(0);
             }
         }
@@ -467,16 +464,16 @@ void tree::helper() {
    overloaded = operator to copy or else when a terminal node
    i.e a win state is reached it calls the helper function
 */
-void tree::move_gen(connectFourBoard *board_object, int moves_made) {
+void tree::generate_move(connectFourBoard *board_object, int moves_made) {
     int child_number = this->getOptimalNode();
 
     if (child_number != -1) {
         // since child number can be 0 - 6 so counter=-1
         *(board_object) = *(this->children[child_number]->ob);
-        // if (moves_made != -1) {
-        //     cout << "Board state after " << moves_made << " moves:" << endl;
-        //     board_object->display_board(board_object);
-        // }
+        if (moves_made != 0 && moves_made % 5 == 0) {
+            cout << "After " << moves_made << " moves:" << endl;
+            board_object->display_board(board_object);
+        }
     }
 
     else if (child_number == -1)
@@ -486,7 +483,7 @@ void tree::move_gen(connectFourBoard *board_object, int moves_made) {
 /* this function is used for displaying the
    results of the connect-four game
 */
-void tree::display_contents() {
+void tree::print_information() {
     int stop_time = clock();
     int total_time = (stop_time - start_time);
     double memory_used = 0.0;
@@ -498,7 +495,7 @@ void tree::display_contents() {
     cout << endl;
     cout << "Number of nodes explored: " << num_nodes_expanded + 1 << endl;
     cout << "Move Length: " << game_path_length << endl;
-    // cout << "Memory size used by 1 node is: 268 bytes" << endl;
-    // cout << "Total size of memory used by program: " << (268 * num_nodes_generated) << " bytes" << endl;
+    cout << "Memory size used by 1 node is: 268 bytes" << endl;
+    cout << "Total size of memory used by program: " << (268 * num_nodes_generated) << " bytes" << endl;
     cout << "Execution Time: " << (total_time) / double(CLOCKS_PER_SEC) << "'s" << endl;
 }

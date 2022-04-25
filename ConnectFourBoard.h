@@ -13,7 +13,7 @@ class connectFourBoard {
    public:
     /*this pointer to a pointer variable is used to dynamically create
      a 2-d array for the connect-four board and the dimensions
-     are given as rows-6, and columns-7
+     are rows-6, and columns-7
     */
     char **board;
     // this is used for row size of the board and is set to 6
@@ -22,9 +22,7 @@ class connectFourBoard {
     int col_size;
     // this is used to know who the player is at that particular board
     char player;
-    /*this is used to dynamically create an ADT moves array using concept
-    of structures
-    */
+    // this is used to dynamically create an moves array using concept
     Move *moves;
 
     // Member functions of this class

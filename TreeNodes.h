@@ -34,8 +34,8 @@ class tree {
     int evaluation3();
     void copy_board_status(connectFourBoard &);
     void helper();
-    void display_contents();
+    void print_information();
     int getOptimalNode();
-    void move_gen(connectFourBoard *, int);
+    void generate_move(connectFourBoard *, int);
 };
 #endif  // TREENODES_H_INCLUDED

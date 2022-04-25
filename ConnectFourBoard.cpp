@@ -13,7 +13,7 @@ using namespace std;
    character
    creates dynamically a structure variable
    of type Move  and assigns its members
-   row_inde and col_index to -1
+   row_index and col_index to -1
    sets the player char variable to 'n'
 */
 connectFourBoard::connectFourBoard() {
